@@ -41,15 +41,21 @@ public class practice2{
         //     System.out.println("Number is not a palindrome "+result);
         // }
 
-        System.out.println("Enter a number:- ");
-        int n = sc.nextInt();
-        int sum = 0;
-        while(n>0){
-            int rem = n%10;
-            sum = sum+rem;
-            n/=10;
-        }
-        System.out.println("Sum of digits is:- "+sum);
+        // System.out.println("Enter a number:- ");
+        // int n = sc.nextInt();
+        // int sum = 0;
+        // while(n>0){
+        //     int rem = n%10;
+        //     sum = sum+rem;
+        //     n/=10;
+        // }
+        // System.out.println("Sum of digits is:- "+sum);
+
+
+        int nums[] = {1,2,3,1};
+        System.out.println(containsDuplicate(nums));
+
+        
     }
         // public static boolean isEven(int n){
         // if(n%2==0){
@@ -59,4 +65,34 @@ public class practice2{
         //     return false;
         // }
         // }
+    public static boolean containsDuplicate(int[] nums) {
+        Arrays.sort(nums);
+        for(int i=1;i<nums.length;i++){
+            
+                if(nums[i]==nums[i-1]){
+                return true;
+                }    
+        }
+        return false;
+    }
+
+    public static void prefix_sum_array(int numbers[]){
+        int maxsum = Integer.MIN_VALUE;
+        int prefix[] = new int[numbers.length];
+        int currsum;
+        prefix[0] = numbers[0];
+        for(int i=1;i<prefix.length;i++){
+            prefix[i] = prefix[i-1]+numbers[i];
+        }
+         for(int i=0;i<numbers.length;i++){
+            int start = i;
+            for(int j=i;j<numbers.length;j++){
+                int end = j;
+                currsum = start==0?prefix[end]:prefix[end]-prefix[start-1];
+                if(maxsum<currsum){
+                        maxsum = currsum;
+                    }
+            }
+        }
+    }
 }
