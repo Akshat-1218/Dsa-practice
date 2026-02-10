@@ -75,6 +75,8 @@
 
 // practice sorting
 
+// bubble sort
+
 public class sorting{
     public static void bubbleSort(int nums[]){
         for(int i=0;i<nums.length-1;i++){
@@ -94,7 +96,62 @@ public class sorting{
     }
     public static void main(String agrs[]){
         int nums[] = {4,6,8,1,2,8};
-        bubbleSort(nums);
+        // bubbleSort(nums);
+        // selectionSort(nums);
+        // insertionSort(nums);
+        countingSort(nums);
         printArr(nums);
     }
+
+    // selection sort
+
+    public static void selectionSort(int nums[]){
+        for(int i=0;i<nums.length-1;i++){
+            int smallest = i;
+            for(int j=i+1;j<nums.length;j++){
+                if(nums[smallest] > nums[j]){
+                    smallest = j;
+                }
+            }
+            int temp = nums[smallest];
+            nums[smallest] = nums[i];
+            nums[i] = temp;
+        }
+    }
+
+    // insertion sort
+
+    public static void insertionSort(int nums[]){
+        for(int i=1;i<nums.length;i++){
+            int curr = nums[i];
+            int prev = i-1;
+            while(prev>=0 && nums[prev]>curr){
+                nums[prev+1] = nums[prev];
+                prev--;
+            }
+            nums[prev+1] = curr;
+        }
+    }
+
+    // counting sort
+
+    public static void countingSort(int nums[]){
+        int largest = Integer.MIN_VALUE;
+        for(int i=0;i<nums.length;i++){
+            largest = Math.max(nums[i],largest);
+        }
+        int count[] = new int[largest+1];
+        for(int i=0;i<nums.length;i++){
+            count[nums[i]]++;
+        }
+        int j = 0;
+        for(int i=0;i<count.length;i++){
+            while(count[i]>0){
+                nums[j] = i;
+                j++;
+                count[i]--;
+            }
+        }
+    }
 }
+
