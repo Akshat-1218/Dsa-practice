@@ -1,3 +1,4 @@
+
 public class string {
     public static void printLetters(String str){
         for(int i=0;i<str.length();i++){
@@ -74,6 +75,79 @@ public class string {
         }
         return newStr;
     }
+
+    // practice
+
+    public static boolean palindrome(String str){
+        int n = str.length();
+        for(int i=0;i<str.length()/2;i++){
+            if(str.charAt(i) != str.charAt(n-1-i)){
+                return false;
+            }
+        }
+        return true;
+    }
+    public static float getShortestPath(String str){
+        int x = 0;
+        int y = 0;
+        for(int i=0;i<str.length();i++){
+            char ans = str.charAt(i);
+            if(ans == 'S'){
+                y--;
+            }
+            else if(ans == 'W'){
+                x--;
+            }
+            else if(ans == 'E'){
+                x++;
+            }
+            else if(ans == 'N'){
+                y++;
+            }
+        }
+        int x2 = x*x;
+        int y2 = y*y;
+        return (float)Math.sqrt(x2+y2);
+    }
+    public static void largestString(String fruits[]){
+        String largest = fruits[0];
+        for(int i=1;i<fruits.length;i++){
+            if(largest.compareTo(fruits[i])<0){
+                largest = fruits[i];
+            }
+        }
+        System.out.println("Largest string is :- "+largest);
+    }
+    public static String toUpperCase(String str){
+        StringBuilder sb = new StringBuilder("");
+        char ch = Character.toUpperCase(str.charAt(0));
+        sb.append(ch);
+        for(int i=1;i<str.length();i++){
+            if(str.charAt(i)==' '){
+                sb.append(str.charAt(i));
+                i++;
+                sb.append(Character.toUpperCase(str.charAt(i)));
+            }else{
+                            sb.append(str.charAt(i));
+            }
+        }
+        return sb.toString();
+    }
+    public static String compression(String str){
+        StringBuilder sb = new StringBuilder("");
+        for(int i=0;i<str.length();i++){
+            Integer count = 1;
+            while(i<str.length()-1 && str.charAt(i)==str.charAt(i+1)){
+                count++;
+                i++;
+            }
+            sb.append(str.charAt(i));
+            if(count>1){
+                sb.append(count.toString());
+            }    
+            }
+            return sb.toString();
+        }
     public static void main(String[] args) {
         // char arr[] = {'a','b','c','d'};
         // String str = "abcd";
@@ -129,7 +203,14 @@ public class string {
         // String name = "hi, my name is akshat";
         // System.out.println(toUppercase(name));                        to uppercase
         
-        String str = "aaabbcccdd";
-        System.out.println(compress(str));
+        String str = "aaabbbccccc";
+        String fruits[] = {"apple","mango","banana"};
+        // System.out.println(compress(str));
+        // System.out.println(palindrome(str));
+        // System.out.println(getShortestPath(str));
+        // largestString(fruits);
+        // System.out.println(toUpperCase(str));
+        System.out.println(compression(str));
+
     }
 }
