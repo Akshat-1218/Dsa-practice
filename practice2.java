@@ -52,8 +52,13 @@ public class practice2{
         // System.out.println("Sum of digits is:- "+sum);
 
 
-        int nums[] = {1,2,3,1};
-        System.out.println(containsDuplicate(nums));
+        int nums[] = {3,6,2,1,8,7,4,5,3,1};
+        // bubbleSort(nums);
+        // selectionSort(nums);
+        // insertionSort(nums);
+        countingSort(nums);
+        printArr(nums);
+        // System.out.println(containsDuplicate(nums));
 
         
     }
@@ -65,34 +70,101 @@ public class practice2{
         //     return false;
         // }
         // }
-    public static boolean containsDuplicate(int[] nums) {
-        Arrays.sort(nums);
-        for(int i=1;i<nums.length;i++){
+    // public static boolean containsDuplicate(int[] nums) {
+    //     Arrays.sort(nums);
+    //     for(int i=1;i<nums.length;i++){
             
-                if(nums[i]==nums[i-1]){
-                return true;
-                }    
-        }
-        return false;
-    }
+    //             if(nums[i]==nums[i-1]){
+    //             return true;
+    //             }    
+    //     }
+    //     return false;
+    // }
 
-    public static void prefix_sum_array(int numbers[]){
-        int maxsum = Integer.MIN_VALUE;
-        int prefix[] = new int[numbers.length];
-        int currsum;
-        prefix[0] = numbers[0];
-        for(int i=1;i<prefix.length;i++){
-            prefix[i] = prefix[i-1]+numbers[i];
-        }
-         for(int i=0;i<numbers.length;i++){
-            int start = i;
-            for(int j=i;j<numbers.length;j++){
-                int end = j;
-                currsum = start==0?prefix[end]:prefix[end]-prefix[start-1];
-                if(maxsum<currsum){
-                        maxsum = currsum;
-                    }
+    // public static void prefix_sum_array(int numbers[]){
+    //     int maxsum = Integer.MIN_VALUE;
+    //     int prefix[] = new int[numbers.length];
+    //     int currsum;
+    //     prefix[0] = numbers[0];
+    //     for(int i=1;i<prefix.length;i++){
+    //         prefix[i] = prefix[i-1]+numbers[i];
+    //     }
+    //      for(int i=0;i<numbers.length;i++){
+    //         int start = i;
+    //         for(int j=i;j<numbers.length;j++){
+    //             int end = j;
+    //             currsum = start==0?prefix[end]:prefix[end]-prefix[start-1];
+    //             if(maxsum<currsum){
+    //                     maxsum = currsum;
+    //                 }
+    //         }
+    //     }
+    // }
+
+    // sorting
+
+    // public static void bubbleSort(int nums[]){
+    //     for(int i=0;i<nums.length;i++){
+    //         for(int j=i;j<nums.length;j++){
+    //             if(nums[i]<nums[j]){
+    //                 int temp = nums[j];
+    //                 nums[j] = nums[i];
+    //                 nums[i] = temp;
+    //             }
+    //         }
+    //     }
+    // }
+
+    // public static void selectionSort(int nums[]){
+    //     for(int i=0;i<nums.length;i++){
+    //         int largest = i;
+    //         for(int j=i+1;j<nums.length;j++){
+    //             if(nums[largest] < nums[j]){
+    //                 largest = j;
+    //             }
+    //         }
+    //         int temp = nums[largest];
+    //         nums[largest ]= nums[i];
+    //         nums[i] = temp;
+    //     }
+    // }
+
+    // public static void insertionSort(int nums[]){
+    //     for(int i=1;i<nums.length;i++){
+    //         int curr = nums[i];
+    //         int prev = i-1;
+    //         while(prev>=0 && nums[prev]<curr){
+    //             nums[prev+1] = nums[prev];
+    //             prev--;
+    //         }
+    //         nums[prev+1] = curr;
+    //     }
+    // }
+
+    public static void countingSort(int nums[]){
+        int larg = Integer.MIN_VALUE;
+        for(int i=0;i<nums.length;i++){
+            if(larg<nums[i]){
+                larg = nums[i];
             }
         }
+        int count[] = new int[larg+1];
+        for(int i=0;i<nums.length;i++){            
+                count[nums[i]]++;            
+        }
+        int j = 0;
+        for(int i=count.length-1;i>=0;i--){
+            while(count[i]>0){
+                nums[j] = i;
+                j++;
+                count[i]--;
+            }
+        }
+    }
+    public static void printArr(int nums[]){
+        for(int i=0;i<nums.length;i++){
+            System.out.print(nums[i]+ " ");
+        }
+        System.out.println("");
     }
 }
