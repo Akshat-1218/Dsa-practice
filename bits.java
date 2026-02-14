@@ -62,6 +62,58 @@ public static int fastExpo(int a,int n){
     }
     return ans;
 }
+
+// practice
+
+public static void odd(int a){
+    int bitmask = 1;
+    if((a & bitmask)==0){
+        System.out.print("Even");
+    }
+    else{
+        System.out.println("Odd");
+    }
+}
+public static int getIBit(int a,int i){
+    int bitmask = 1<<i;
+    if((a & bitmask)==0){
+        return 0;
+    }
+    return 1;
+
+}
+public static int setIBit(int a,int i){
+    int bitmask = 1<<i;
+    return a | bitmask;
+}
+public static int clearIBit(int a,int i){
+    int bitmask = ~(1<<i);
+    return a & bitmask;
+}
+public static boolean powerTwo(int n){
+    return (n&(n-1))==0;
+}
+public static void countBits(int n){
+    int count = 0;
+    while(n>0){
+        if((n&1)!=0){
+            count++;
+        }
+        n = n>>1;
+    }
+    System.out.println(count);
+}
+public static int fast(int a,int n){
+    int ans = 1;
+    while(n>0){
+        if((n&1)!=0){
+            ans = ans*a;
+        }
+        a = a*a;
+        n = n>>1;
+    }
+    return ans;
+}
     public static void main(String[] args) {
     //    System.out.println(5&6);       
     //    System.out.println(5|6);       
@@ -89,6 +141,17 @@ public static int fastExpo(int a,int n){
 
     // System.out.println(countSetBits(15));
 
-    System.out.println(fastExpo(3, 5));
+    // System.out.println(fastExpo(3, 5));
+
+    int a = 3;
+    int i = 1;
+    int n = 5;
+    // odd(a);
+    // System.out.println(getIBit(a, i));
+    // System.out.println(setIBit(a, i));
+    // System.out.println(clearIBit(a, i));
+    // System.out.println(powerTwo(n));
+    // countBits(n);
+    System.out.println(fast(a, n));
  }
 }
